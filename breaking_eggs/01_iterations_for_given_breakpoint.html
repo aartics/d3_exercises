@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<style>
+body {
+      font-family:Consolas;
+      font-weight: bold;
+      font-size: 20px;
+}
+</style>
+
+<body>
+<!-- <input type="file" id="txtfiletoread"/> -->
+<input name="floors" type="text" maxlength="512" id="floors" class="setGrid" placeholder="total no of floors"/>
+<input name="step" type="text" maxlength="512" id="step" class="setGrid" placeholder="size of step"/>
+<input name="breakpoint" type="text" maxlength="512" id="breakpoint" placeholder="breaking point"/>
+
+<button onclick="countarraytillbreakpoint()">counter of iterations</button>
+<div id="number_of_iterations"></div>
+
+</body>
+
+<script type="text/javascript">
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+function countarraytillbreakpoint(){
+//       console.clear()
+
+      console.log("hello eggs")
+      floors = Number(floors.value)
+      step = Number(step.value)
+      breakpoint = Number(breakpoint.value)
+      var array_of_floors = []
+      var counter = 0;
+
+
+      for (var i=0; i<floors; i++) {
+            array_of_floors.push(i)
+      }
+
+      console.log(array_of_floors)
+
+      var counter = 0
+
+      check_egg_break(array_of_floors,step,breakpoint)
+
+      function check_egg_break(array,step_counter,breakpoint) {
+
+            if(array[step_counter] <= breakpoint) {
+                counter++
+                console.log("counter: " + counter + " = " + step_counter)
+                step_counter = step_counter + step
+                check_egg_break(array_of_floors,step_counter,breakpoint)
+            } else {
+                step_counter = step_counter - step
+                console.log(step_counter + " broke")
+                check_smaller_array_since_last_counter(array, step_counter, breakpoint)
+            }
+
+      }
+
+      function check_smaller_array_since_last_counter(array, step_counter, breakpoint) {
+            for(var i=step_counter; i < array.length; i++) {
+                  if(array[i] < breakpoint) {
+                        counter++
+                        console.log("counter now: " + counter + " = " + array[i])
+                  }
+            }
+      }
+
+}
+
+</script>
+</html>

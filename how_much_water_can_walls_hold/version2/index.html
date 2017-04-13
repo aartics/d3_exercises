@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<style>
+body {
+      font-family:Consolas;
+      font-weight: bold;
+      font-size: 20px;
+}
+</style>
+
+<body>
+<!-- <input type="file" id="txtfiletoread"/> -->
+<input name="rows" type="text" maxlength="512" id="rows" class="setGrid" placeholder="ROWS"/>
+<input name="columns" type="text" maxlength="512" id="columns" class="setGrid" placeholder="COLUMNS"/>
+<!-- <button onclick="makewallsandwater()">WALLS, WATER, GRID</button> -->
+<div id="thisisannoying"></div>
+<div id="countofwater"></div>
+
+</body>
+
+<script type="text/javascript">
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+window.onload = function () { //makewallsandwater(){
+
+////NEW CODE:
+/// Main function - calculates water, for a random  of "heights" = "rows" = "y" (maximum value of random number); "columns" = size_of_array_to_loop_populate = "x"
+//  Input 1: rows.generateRandomNumbers()
+//  function generateRandomNumbers(columns_int_is_size_of_array, rows_int_is_value_of_array) //populates an array of random numbers. 
+
+      var rows = 5 // document.getElementById('rows').value
+      var columns = 5 // document.getElementById('columns').value
+// console.log(rows, columns)    
+      var birth_of_walls = generateRandomNumbers(columns,rows)
+console.log(birth_of_walls)      
+
+// Count of water. do countofwater.
+// function count_water() {
+      // getIndexOf(Math.max.apply(Math, cells)) //max value of array
+      // 
+
+// get highest number in array:
+// console.log(Math.max.apply(Math, cells))
+// get indexOf first maximum array
+// console.log(cells.indexOf(Math.max.apply(Math, cells)))
+
+var water_count = 0;
+
+function chop_array_recursive(array) {
+      var right_of_max = []
+      var left_of_max = []
+      for (var i = array.indexOf(Math.max.apply(Math, array)) + 1; i< array.length; i++) {
+            right_of_max.push(array[i])
+      }
+      for (var i = array.indexOf(Math.max.apply(Math, array)); i > -1; i--) {
+            left_of_max.push(array[i])
+      }
+// console.log(left_of_max)
+// console.log(left_of_max.length + " <- left_of_max")
+// console.log(right_of_max)
+// console.log(right_of_max.length + " <- right_of_max")
+// console.log(right_of_max.indexOf(Math.max.apply(Math, right_of_max)) * (Math.max.apply(Math, right_of_max)) + " " + right_of_max.indexOf(Math.max.apply(Math, right_of_max)) + " * " + (Math.max.apply(Math, right_of_max)) + " <- " + "volume of water at this point")
+      water_count = water_count + (left_of_max[0] * (left_of_max.length) - (left_of_max.reduce((a, b) => a + b, 0)))
+// console.log(water_count + "hi")
+      if (right_of_max.length == 0) {
+            console.log("inside if right_of_max.length == 0 ")
+            return water_count
+      } else if (right_of_max.length > 2) {
+            chop_array_recursive(right_of_max)
+      } else if (right_of_max.length == 2) {
+            water_count += ((Math.max.apply(Math, left_of_max)) - right_of_max[0])
+      } else {
+            console.log(water_count + " resursive issue; inside last else loop")
+            return water_count
+      }
+// console.log(water_count)
+
+}
+
+      chop_array_recursive(birth_of_walls)
+// console.log(water_count)
+// console.log("-------------")
+
+// map display objects to cells with numbers:
+// [1,2,3,4].map( function(item) {
+//      console.log(item);
+// })
+
+      var dictionary_of_cells_to_merge = birth_of_walls.map( function(each_random_number, i) {
+            var cell = {}
+            cell["x"] = i
+            cell["y"] = each_random_number
+            cell["display"] = "Z"
+            return cell
+      })
+
+console.log(JSON.stringify(dictionary_of_cells_to_merge))
+
+// function to generate random numbers of max rows and populate an array of size columns:
+      function generateRandomNumbers(columns, rows) {
+            random_column_heights = []
+            for (var i = 0; i < columns; i++) {
+//                   console.log(i + "=" + Math.floor(Math.random() * rows))
+                  random_column_heights.push(Math.floor(Math.random() * rows))
+            }
+            return random_column_heights
+
+      }
+
+////// OLD CODE NOT NEEDED, CURRENTLY COMMENTED OUT /////////  
+
+//       var array_of_my_x = []
+//       var array_of_my_y = []
+
+//       for (var i = 0; i < cells.length; i++) {
+//               if(cells[i].display == "Z") {
+//                       array_of_my_x.push(cells[i]["x"])
+//                       array_of_my_y.push(cells[i]["y"])
+//               }
+//       }
+
+
+//       for (var i = 0; i < array_of_my_x.length; i++) {
+//             for(var j = 0; j < cells.length; j++) {
+//                   if((array_of_my_x[i] == cells[j]["x"]) && (cells[j]["y"] > array_of_my_y[i])) {
+//                         cells[j]["display"] = "Z"
+
+//                   }
+//             }
+
+//       }
+
+
+//       var megarray = []
+
+//       for(var i=0; i<cells.length; i++) {
+//               var newarray = cells.filter(function (array) {
+//                       if (array.y  === i) {
+//                               return true;
+//                       }
+//               })
+
+//               if (newarray.length > 1) {
+//                       megarray.push(newarray)
+//               }
+
+//       }
+
+//       for (var i = 0; i < rows; i++) {
+
+//            var little = []
+
+//             megarray[i].forEach(function (element, index, array) {
+
+//                    if ((element.display === "Z")) {
+//                          little.push(element.x)
+//                    }
+            
+//              })
+
+//              littles.push(little)
+//              little = []
+
+//       }
+
+//       for (var i = 0; i < rows; i++) {
+//             start = littles[i][0]
+//             end = littles[i][littles[i].length-1]
+
+//             megarray[i].forEach(function (element) {
+//                   if ((element.x > start) && (element.x < end) && !(element.display=="Z")) {
+//                         element.display = "^"
+//                   }
+//             })
+//       }
+
+
+//       var printedStringsArray = []
+
+//       for (var i=0; i<megarray.length; i++) {
+//               var stringtoprint = "";
+//               var array = megarray[i]
+//               for (var j=0; j< array.length; j++) {
+//                       stringtoadd = array[j].display
+//                       stringtoprint = stringtoprint + stringtoadd
+//               }
+//               printedStringsArray.push(stringtoprint)
+//       }
+
+//       var div = document.getElementById('thisisannoying')
+
+//       for (var i=0; i<printedStringsArray.length; i++) {
+//              var content = document.createTextNode((printedStringsArray[i]) + "\n")
+//              div.appendChild(document.createElement("br"))
+//              div.appendChild(content)
+//       }
+
+}
+
+</script>
+</html>

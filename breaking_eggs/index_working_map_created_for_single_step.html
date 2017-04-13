@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<style>
+body {
+      font-family:Consolas;
+      font-weight: bold;
+      font-size: 20px;
+}
+</style>
+
+<body>
+<!-- <input type="file" id="txtfiletoread"/> -->
+<input name="floorsx" type="text" maxlength="512" id="floorsx" class="setGrid" placeholder="total no of floors"/>
+<input name="stepxx" type="text" maxlength="512" id="stepx" class="setGrid" placeholder="size of step"/>
+<input name="breakpointx" type="text" maxlength="512" id="breakpointx" placeholder="breaking point"/>
+
+<button onclick="countarraytillbreakpoint()">counter of iterations</button>
+<div id="number_of_iterations"></div>
+
+</body>
+
+<script type="text/javascript">
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+function countarraytillbreakpoint(){
+//       console.clear()
+
+//       console.log("hello eggs!")
+      var floors = 100
+      var step = 10
+      var breakpoint = 75
+      var array_of_floors = []
+      var counter = 0;
+
+      var array_of_steps = [10,15,20,5,25,50]
+
+//       for (var i=2; i<(floors - 2); i++) {
+//             array_of_steps.push(i)
+//       }
+
+//       console.log(array_of_steps)
+
+      for (var i=0; i<floors; i++) {
+            array_of_floors.push(i)
+      }
+
+//       console.log(array_of_floors)
+
+      var array_of_max_counters = []
+
+      for (var i=0; i<array_of_steps.length; i++) {
+            step = array_of_steps[i]
+            check_egg_break(array_of_floors,step,breakpoint)
+      }
+
+      function check_egg_break(array,step_counter,breakpoint) {
+
+            if(array[step_counter] < breakpoint) {
+                counter++
+//                 console.log("counter: " + counter + " = " + step_counter)
+                step_counter = step_counter + step
+                check_egg_break(array_of_floors,step_counter,breakpoint)
+            } else {
+                step_counter = step_counter - step
+//                 console.log(array[step_counter]+ " : " + step_counter + ": broke")
+                check_smaller_array_since_last_counter(array, step_counter, breakpoint)
+            }
+
+      }
+
+      function check_smaller_array_since_last_counter(array, step_counter, breakpoint) {
+            var mini_array_of_counter_here = []
+            for(var i=step_counter; i < array.length; i++) {
+                  if(array[i] < breakpoint) {
+                        counter++
+                        mini_array_of_counter_here.push(counter)
+                        var max_counter = Math.max.apply(Math, mini_array_of_counter_here);
+//                         console.log("counter now: " + counter + " = " + array[i])
+                  }
+            }
+            array_of_max_counters.push(max_counter)
+//             console.log(array_of_max_counters)
+      }
+
+//       console.log(array_of_max_counters)
+
+      var new_hopefully_last_array = []
+
+      for (var i = 0; i < (array_of_max_counters.length-1); i++) {
+            new_hopefully_last_array.push(array_of_max_counters[i+1]-array_of_max_counters[i])
+      }
+
+      new_hopefully_last_array.unshift(array_of_max_counters[0])
+      console.log(new_hopefully_last_array)
+
+//       var a = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+
+      var aCount = new Map([...new Set(new_hopefully_last_array)].map(
+          x => [x, new_hopefully_last_array.filter(y => y === x).length]
+      ));
+
+      console.log(aCount)
+
+
+}
+
+</script>
+</html>

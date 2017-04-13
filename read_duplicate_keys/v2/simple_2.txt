@@ -1,0 +1,8 @@
+ABC
+aBC
+abC
+foo
+bar
+BAR
+xYz
+XyZ

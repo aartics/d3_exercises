@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<script type="text/javascript">
+
+window.onload = function () {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        var fileSelected = document.getElementById('txtfiletoread')
+        fileSelected.addEventListener('change', function (e) {
+            
+            fileTobeRead = fileSelected.files[0]
+
+            var fileReader = new FileReader()
+            
+            fileReader.onload = function (e) {
+                var fileReaderResult = fileReader.result
+                var newarray = fileReaderResult.toString().split("\r\n")
+
+                var uppercasearray = newarray.map (function(x) {
+                    return x.toUpperCase()
+                })
+
+                Array.prototype.unique2 = function() {
+                     
+                    var n = {}, r=[]
+                    for(var i = 0; i < this.length; i++)  {
+                        if (!n[this[i]])  {
+                            n[this[i]] = true
+                            r.push(this[i])
+                        }
+                        
+                    }
+
+                    return r;
+                }
+
+                var keys = uppercasearray.unique2()
+
+                var bigarray = []
+
+                for (var i = 0; i < keys.length; i++) {
+                    var obj = {}
+                    var arr = []
+
+                    for (var j = 0; j < newarray.length; j++) {
+                        if (keys[i] == newarray[j].toUpperCase()) {
+                            arr.push(newarray[j])
+                        }
+                        obj[keys[i]] = arr
+                    }
+
+                    bigarray.push(obj)
+
+                }
+
+                console.log(bigarray.length)
+                console.log(JSON.stringify(bigarray))
+
+               alert("DUPLICATES:" + "\n"
+                          + "Total number of Strings: " + newarray.length + "\n"
+                          + "Total number of duplicates" + keys.length + "\n"
+               )
+            }
+
+            fileReader.readAsText(fileTobeRead)
+        })
+    }
+}
+
+</script>
+<body>
+<input type="file" id="txtfiletoread"/>
+
+</body>
+</html>

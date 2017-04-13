@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<head> 
+    <title>Final</title>
+    <link href="final.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery-2.2.1.min.js"></script> 
+    <script type="text/javascript" src="final.js"></script> 
+</head>
+<body>
+    <h2 class="container">Form Validation with Javascript/jQuery</h2>
+    <div class="container" id="divRegistered"></div>
+    <div class="container" id="divMain">
+    <form action="final.html" method="get" name="frmRegister" id="frmRegister" onsubmit="return validateForm(this)">
+        <table>
+            <tr>
+                <td>Login</td>
+                <td><input type="text" name="Login" id="txtLogin" />
+                    <span id="spnLogin"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" id="txtPassword">
+                    <span id="spnPasswordComplexity"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" id="txtConfirmPassword">
+                    <span id="spnPasswordCompare"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" id="txtEmail">
+                    <span id="spnEmail"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Email</td>
+                <td><input type="text" id="txtConfirmEmail">
+                    <span id="spnEmailCompare"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" id="btnRegister" value="Register"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,55 @@
+/* aarti sharma 2016 
+UC Berkeley Extension Homework Assignment 1 
+JavaScript and jQuery: An Introduction
+
+1.0: this program takes 2 values as user input and
+alerts an output of the sum and date, letting
+user know if the sum is greater then 10
+
+*/
+
+// declaring the numeric, string and date variables:
+
+var num1, num2, num3, strOutput;
+var dteDate = new Date();
+
+// using prompt to allow user to input numbers for num1 and num2, 
+// and using conditional while to ensure
+// if num1 and num2 entered by the user are numbers, otherwise
+// prompt again:
+
+num1 = prompt("Enter first number")
+while(!parseFloat(num1)) {
+  num1 = prompt("Please enter numbers only. Try again. \nEnter first number")
+} 
+  
+num2 = prompt ("Enter second number")
+while(!parseFloat(num2)) {
+  num2 = prompt("Please enter numbers only. Try again. \nEnter second number")
+}
+
+// num1 and num2 are valid numbers, adding them to var sum:
+
+var sum = parseFloat(num1) + parseFloat(num2)
+
+// conditional operator to check if value of sum > 10
+// assigning appropriate value to strOutput
+
+if (sum > 10) {
+  strOutput = "Sum (greater than 10) = $" + sum + "\n" + "Current Date & Time = " + dteDate.toString()
+} else {
+  strOutput = "Sum (less than or equal to 10) = $" + sum + "\n" + "Current Date & Time = " + dteDate.toString()
+}
+
+// alert final string depending on output:
+
+alert (strOutput)
+
+/* test cases:
+input field tests:
+- special characters, 
+- alphabets, 
+- blank spaces and tabs, 
+- function statements
+- long inputs
+*/

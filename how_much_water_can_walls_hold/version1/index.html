@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<style>
+body {
+      font-family:Consolas;
+      font-weight: bold;
+      font-size: 20px;
+}
+</style>
+
+<body>
+<!-- <input type="file" id="txtfiletoread"/> -->
+<input name="rows" type="text" maxlength="512" id="rows" class="setGrid" placeholder="ROWS"/>
+<input name="columns" type="text" maxlength="512" id="columns" class="setGrid" placeholder="COLUMNS"/>
+<button onclick="makewallsandwater()">WALLS, WATER, GRID</button>
+<div id="thisisannoying"></div>
+<div id="countofwater"></div>
+
+</body>
+
+<script type="text/javascript">
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+function makewallsandwater(){
+
+      var rows = document.getElementById('rows').value
+
+      var columns = document.getElementById('columns').value
+
+      var cells = []
+      
+      var littles = []
+      var start, end;
+      var countofwater = 0;
+
+
+      for (var i = 0; i < columns; i++) {
+            for (var j = 0; j < rows; j++) {
+                  cell = {
+                        "x":0,
+                        "y":0,
+                        "display":"_"
+                  }
+                  cell["x"] = i
+                  cell["y"] = j
+                  cells.push(cell)
+            }
+      }
+
+      function getRandomSubarray(arr, size) {
+          var shuffled = arr.slice(0), i = arr.length, temp, index;
+          while (i--) {
+              index = Math.floor((i + 1) * Math.random());
+              temp = shuffled[index];
+              shuffled[index] = shuffled[i];
+              shuffled[i] = temp;
+          }
+          return shuffled.slice(0, size);
+      }
+
+      var amount_to_flip = getRandomSubarray(cells, cells.length/25)
+
+      for(var i=0; i<amount_to_flip.length; i++) {
+              amount_to_flip[i].display = "Z"
+      }
+
+      var array_of_my_x = []
+      var array_of_my_y = []
+
+      for (var i = 0; i < cells.length; i++) {
+              if(cells[i].display == "Z") {
+                    debugger;
+                      array_of_my_x.push(cells[i]["x"])
+                      array_of_my_y.push(cells[i]["y"])
+              }
+      }
+
+
+      for (var i = 0; i < array_of_my_x.length; i++) {
+            for(var j = 0; j < cells.length; j++) {
+                  if((array_of_my_x[i] == cells[j]["x"]) && (cells[j]["y"] > array_of_my_y[i])) {
+                        cells[j]["display"] = "Z"
+
+                  }
+            }
+
+      }
+
+
+      var megarray = []
+
+      for(var i=0; i<cells.length; i++) {
+              var newarray = cells.filter(function (array) {
+                      if (array.y  === i) {
+                              return true;
+                      }
+              })
+
+              if (newarray.length > 1) {
+                      megarray.push(newarray)
+              }
+
+      }
+
+      for (var i = 0; i < rows; i++) {
+
+           var little = []
+
+            megarray[i].forEach(function (element, index, array) {
+
+                   if ((element.display === "Z")) {
+                         little.push(element.x)
+                   }
+            
+             })
+
+             littles.push(little)
+             little = []
+
+      }
+
+      for (var i = 0; i < rows; i++) {
+//             console.log(littles[i])
+            start = littles[i][0]
+            end = littles[i][littles[i].length-1]
+
+            megarray[i].forEach(function (element) {
+                  if ((element.x > start) && (element.x < end) && !(element.display=="Z")) {
+                        element.display = "^"
+                  }
+            })
+      }
+
+// console.log(JSON.stringify(cells))
+
+      for (var i = 0; i < cells.length; i++) {
+            if (cells[i]["display"] == "^") {
+                  countofwater ++
+            }
+      }
+
+      console.log(countofwater)
+
+      var printedStringsArray = []
+
+      for (var i=0; i<megarray.length; i++) {
+              var stringtoprint = "";
+              var array = megarray[i]
+              for (var j=0; j< array.length; j++) {
+                      stringtoadd = array[j].display
+                      stringtoprint = stringtoprint + stringtoadd
+              }
+              printedStringsArray.push(stringtoprint)
+      }
+
+      var div = document.getElementById('thisisannoying')
+
+      for (var i=0; i<printedStringsArray.length; i++) {
+             var content = document.createTextNode((printedStringsArray[i]) + "\n")
+             div.appendChild(document.createElement("br"))
+             div.appendChild(content)
+      }
+
+      var countofwaterdiv = document.createTextNode("\n \n Cells containing water: " + countofwater)
+      var divwater = document.getElementById('countofwater')
+
+      divwater.appendChild(countofwaterdiv)
+
+}
+
+</script>
+</html>

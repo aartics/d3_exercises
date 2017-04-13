@@ -1,0 +1,80 @@
+/* aarti sharma 2016 
+UC Berkeley Extension Homework Assignment 2
+JavaScript and jQuery: An Introduction
+
+1.0: this program is to loop and sort through
+an array of fruits
+
+*/
+
+// declaring the array of fruit names and string:
+
+var arrFruits = ['avocado', 'persimmon', 'banana']
+var strFruit = "";
+
+for (i in arrFruits) {
+  alert(arrFruits[i])
+}
+
+// adding another fruit element to array
+
+arrFruits.push('mango')
+
+// looping and alerting the fruit name
+
+for (var i=0; i < arrFruits.length; i++) {
+  alert("For loop element " + i + ": " + arrFruits[i])
+}
+
+//using switch and fallthrough behavior for alerting fruit
+//according to day
+
+for (var d=0; d < 7; d++) {
+  switch (d) {
+    case 0: 
+      alert(arrFruits[0])
+      break;
+
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      alert(arrFruits[1])
+      break;
+
+    case 5:
+      alert(arrFruits[2])
+      break;
+
+    case 6:
+      alert(arrFruits[3])
+      break;
+
+    default:
+      alert("default")
+      break;     
+  }
+}
+
+//sorting fruit list
+
+arrFruits.sort()
+
+//alerting capitalized string of fruit names
+
+for (f in arrFruits) {
+  strFruit = arrFruits[f]
+  strFruit = capitalizeFirstLetter(strFruit)
+  alert("sorted fruit " + f + ": " + strFruit)
+}
+
+//function to capitalize first letter of name
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+/* Test Cases:
+1. Check for sequence of alerts
+
+*/

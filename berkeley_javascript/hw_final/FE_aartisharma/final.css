@@ -1,0 +1,40 @@
+#divRegistered {
+    height: 100px;
+    width: 600px;
+    color: black;
+    background-color:tan;
+    font-size: 20px;
+    display: none;
+}
+
+tr {
+    height: 40px;
+}
+
+.container {
+    background-color: #222;
+    color: #fff;
+    margin: 20px auto;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    width: 600px;
+}
+
+form {
+    background-color: #555;
+    display: block;
+    padding: 15px;
+}
+
+.unacceptable {
+    color: red;
+}
+
+.acceptable {
+    color: aquamarine;
+}
+
+.great {
+    color: greenyellow;
+}

@@ -1,0 +1,285 @@
+{
+  "name": "flare",
+  "children": [
+    {
+      "name": "Mark Silva",
+      "children": [
+        {
+          "name": "Wells Fargo",
+          "children": [
+            {
+              "name": 3,
+              "children": [
+                {
+                  "name": "General Question",
+                  "children": [
+                    {
+                      "name": "totalTime",
+                      "totalTime": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "groupby": "customer",
+          "name": "NVIDIA",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 3,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "General Question",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 1.75
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "groupby": "customer",
+          "name": "Airbus",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 1,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "Error",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 0.5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupby": "SE",
+      "name": "Palamida Palamida",
+      "children": [
+        {
+          "groupby": "customer",
+          "name": "OGIS",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 3,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "General Question",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 0.25
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "groupby": "customer",
+          "name": "Brocade",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 2,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "Error",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupby": "SE",
+      "name": "Roman Yankin",
+      "children": [
+        {
+          "groupby": "customer",
+          "name": "OGIS",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 3,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "General Question",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 0.25
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "groupby": "customer",
+          "name": "Brocade",
+          "children": [
+            {
+              "groupby": "priority",
+              "name": 2,
+              "children": [
+                {
+                  "groupby": "issueType",
+                  "name": "Error",
+                  "children": [
+                    {
+                      "groupby": "ticket",
+                      "name": "totalTime",
+                      "totalTime": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ticketNumber": "201501021",
+      "customer": "Wells Fargo",
+      "status": "closed",
+      "priority": 3,
+      "issueType": "General Question",
+      "owner": "Doug Owings",
+      "SE": "Mark Silva",
+      "SalesRep": "Deno Konstantinidis",
+      "created": "2015-01-02 10:45:04",
+      "firstResponse": "2015-01-02 14:40:05",
+      "totalTime": 2,
+      "responseTime": 235
+    },
+    {
+      "ticketNumber": "201501024",
+      "SalesRep": null,
+      "created": "2015-12-09 10:25:07",
+      "firstResponse": "2015-12-09 12:55:05",
+      "totalTime": 0.25,
+      "responseTime": 149
+    },
+    {
+      "ticketNumber": "201512101",
+      "customer": "OGIS",
+      "status": "closed",
+      "priority": 3,
+      "issueType": "General Question",
+      "owner": "Jon Martin",
+      "SE": "Palamida Palamida",
+      "SalesRep": "Palamida Palamida",
+      "created": "2015-12-10 01:00:04",
+      "firstResponse": "2015-12-10 17:45:05",
+      "totalTime": 0.25,
+      "responseTime": 1005
+    },
+    {
+      "ticketNumber": "201512111",
+      "customer": "NVIDIA",
+      "status": "closed",
+      "priority": 3,
+      "issueType": "General Question",
+      "owner": "Alex Masluk",
+      "SE": "Mark Silva",
+      "SalesRep": "Deno Konstantinidis",
+      "created": "2015-12-11 09:15:13",
+      "firstResponse": "2015-12-11 14:25:05",
+      "totalTime": 1.75,
+      "responseTime": 309
+    },
+    {
+      "ticketNumber": "201512113",
+      "customer": "Airbus",
+      "status": "closed",
+      "priority": 1,
+      "issueType": "Error",
+      "owner": "Jon Martin",
+      "SE": "Roman Yankin",
+      "SalesRep": "Greg Kelton",
+      "created": "2015-12-11 12:25:04",
+      "firstResponse": "2015-12-11 15:05:05",
+      "totalTime": 0.5,
+      "responseTime": 160
+    },
+    {
+      "ticketNumber": "201512115",
+      "customer": "Brocade",
+      "status": "closed",
+      "priority": 3,
+      "issueType": "General Question",
+      "owner": "Jon Martin",
+      "SE": "Mark Silva",
+      "SalesRep": "Carol Pfeltz",
+      "created": "2015-12-11 13:00:05",
+      "firstResponse": "2015-12-11 14:45:06",
+      "totalTime": 0.5,
+      "responseTime": 105
+    },
+    {
+      "ticketNumber": "201512141",
+      "customer": "Brocade",
+      "status": "closed",
+      "priority": 2,
+      "issueType": "Error",
+      "owner": "Alex Masluk",
+      "SE": "Mark Silva",
+      "SalesRep": "Carol Pfeltz",
+      "created": "2015-12-14 12:05:08",
+      "firstResponse": "2015-12-14 12:15:06",
+      "totalTime": 1,
+      "responseTime": 9
+    },
+    {
+      "ticketNumber": "201512143",
+      "customer": "OGIS",
+      "status": "closed",
+      "priority": 3,
+      "issueType": "General Question",
+      "owner": "Jon Martin",
+      "SE": "Palamida Palamida",
+      "SalesRep": "Palamida Palamida",
+      "created": "2015-12-14 02:05:04",
+      "firstResponse": "2015-12-14 16:15:06",
+      "totalTime": 3.5,
+      "responseTime": 850
+    }
+  ]
+}

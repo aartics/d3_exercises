@@ -1,0 +1,115 @@
+/* aarti sharma 2016 
+UC Berkeley Extension Homework Assignment 3 
+JavaScript and jQuery: An Introduction
+
+1.0: this program makes an object person, and enhances it with getters and setters
+
+*/
+
+// Use an object literal to create the object and 
+// name the properties firstName, lastName, fullName and age.
+
+var person = {
+  "firstName" : "x",
+  "lastName" : "y",
+  "fullName" : "xzy",
+  "age" : 1
+}
+
+testPersonObjectWithNames()
+
+// You will enhance the above person object. We want to add a getter and setter method for the fullName property:
+// 1. Reading (getting) the fullName property returns the firstName and lastName properties including a blank space
+// separating them. Simply use the return statement inside the getter function and return the concatenation of
+// firstName, a blank space, and lastName
+
+
+var person = {
+  "firstName" : "x",
+  "lastName" : "y",
+  get fullName() {
+    return this.firstName + " " + this.lastName
+  },
+  "age" : 1
+}
+
+testPersonObjectWithSetters("aarti sharma", 32)
+
+// 2. Updating (setting) the fullName property takes the entered full name and splits it up to assign it into the
+// firstName and lastName property. Name the input parameter strName in the setter function. Inside the setter
+// function declare a variable strWords and use the split method on the strName parameter with a space as the
+// split character and assign it into strWord. Now strWord is an array of two elements, the first name and the last
+// name. Assign the first element of strWord into the firstName property and the second element into the
+// lastName property.
+
+var person = {
+  "firstName" : "x",
+  "lastName" : "y",
+  get fullName() {
+    return this.firstName + " " + this.lastName
+  },
+  set fullName(strName) {
+    var strWords = strName.split(" ")
+    this.firstName = strWords[0]
+    this.lastName = strWords[1]
+  },
+  "age" : 1
+}
+
+testPersonObjectWithSetters("aarti sharma", 32)
+
+// In this last part we want to perform some validation for the age property. Again, we are going to add a getter and setter
+// method for the age property:
+// 1. The getter method should return the age property preceded by the string ‘age = ‘.
+// 2. For the setter method create an input parameter named intAge. Inside the setter method verify that the age is a
+// valid number (use isNaN() function) and greater than 0 using an if statement:
+// a. If the validation is successful, assign the age as an integer using the Math.round() function.
+// b. If validation fails, then assign the string ‘Invalid age assignment’ to the age property
+
+var person = {
+  "firstName" : "x",
+  "lastName" : "y",
+  get fullName() {
+    return this.firstName + " " + this.lastName
+  },
+  set fullName(strName) {
+    var strWords = strName.split(" ")
+    this.firstName = strWords[0]
+    this.lastName = strWords[1]
+  },
+  get age() {
+    return "age = " + this._age
+  },
+  set age(intAge) {
+    if (!isNaN(intAge) && intAge > 0) {
+      this._age = Math.round(intAge)
+    } else {
+      return "Invalid Age assignment"
+    }
+  }
+}
+
+testPersonObjectWithSetters("aarti sharma", 32)
+testPersonObjectWithSetters("aarti sharma", 54.6)
+testPersonObjectWithSetters("aarti sharma", "blah")
+testPersonObjectWithSetters("aarti sharma", -32)
+
+
+//functions to test the person object to be called with various parameters for testing value
+
+function testPersonObjectWithNames() {
+    person.firstName = "aarti"
+    person.lastName = "sharma"
+    person.fullName = "aarti chandrasekhar sharma"
+    person.age = 32
+    
+    alert("Person object without setters" + JSON.stringify(person))
+}
+
+function testPersonObjectWithSetters(strName, intAge) {
+  person.fullName = strName
+  person.age = intAge
+  
+  alert("Person object using setters" + JSON.stringify(person))
+}
+

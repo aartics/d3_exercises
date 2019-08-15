@@ -31,19 +31,15 @@
 // For example, if 0 takes 6 seconds to print and 1 takes two seconds to print, 
 // then 1 should wait for 0 to print and so on.
 // Hint: Use for loop to chain promises :).
-/* -- this is the function to modify: --
-
-const funk = function() {
-    for (let i = 0; i < 10; i++) {
-        var randomTime = Math.round(Math.random() * 10000)
-        setTimeout(function() {
-            console.log(i);
-        }, randomTime);
-
-    }
-}
-
-*/
+// -- this is the function to modify: --
+// const funk = function() {
+//     for (let i = 0; i < 10; i++) {
+//         var randomTime = Math.round(Math.random() * 10000)
+//         setTimeout(function() {
+//             console.log(i);
+//         }, randomTime);
+//     }
+// }
 
 
 // const myFunk = function() {

@@ -3,6 +3,45 @@
 /*--------------------------------------------*/
 
 //Exercise:
+// Let’s assume that we have a for loop 
+// that prints 0 to 10 at random intervals (0 to 10 seconds). 
+// We need to modify it using promises to print sequentially 0 to 10. 
+// For example, if 0 takes 6 seconds to print and 1 takes two seconds to print, 
+// then 1 should wait for 0 to print and so on.
+// Hint: Use for loop to chain promises :).
+/* -- this is the function to modify: --
+
+const funk = function() {
+    for (let i = 0; i < 10; i++) {
+        var randomTime = Math.round(Math.random() * 10000)
+        setTimeout(function() {
+            console.log(i);
+        }, randomTime);
+
+    }
+}
+
+*/
+
+
+// const myFunk = function() {
+//     let resolvedPromise = Promise.resolve();
+
+//     for (let i = 0; i < 10; i++) {
+//         resolvedPromise = resolvedPromise.then(function() {
+//             return new Promise(function(resolve) {
+//                 setTimeout(function() {
+//                     console.log(i);
+//                     resolve();
+//                 }, Math.round(Math.random() * 1000))  
+//             })
+//         })
+//     }
+// }
+
+// myFunk();
+
+//Exercise:
 //Write two functions that use Promises that you can chain! 
 //The first function, makeAllCaps(), will take in an array 
 //of words and capitalize them, and then the second function, 
@@ -416,6 +455,43 @@ you want results even if a job is rejected, just use catch
 //     console.error('error', error);
 // });
 
+//4. What will be order of execution here?
+// const wait = time => new Promise(
+//   res => setTimeout(() => res(), time)
+// );
+
+// wait(200)
+//   // onFulfilled() can return a new promise, `x`
+//   .then(() => new Promise(res => res('foo')))
+//   // the next promise will assume the state of `x`
+//   .then(a => a)
+//   // Above we returned the unwrapped value of `x`
+//   // so `.then()` above returns a fulfilled promise
+//   // with that value:
+//   .then(b => console.log(b)) // 'foo'
+//   // Note that `null` is a valid promise value:
+//   .then(() => null)
+//   .then(c => console.log(c)) // null
+//   // The following error is not reported yet:
+//   .then(() => {throw new Error('foo');})
+//   // Instead, the returned promise is rejected
+//   // with the error as the reason:
+//   .then(
+//     // Nothing is logged here due to the error above:
+//     d => console.log(`d: ${ d }`),
+//     // Now we handle the error (rejection reason)
+//     e => console.log(e)) // [Error: foo]
+//   // With the previous exception handled, we can continue:
+//   .then(f => console.log(`f: ${ f }`)) // f: undefined
+//   // The following doesn't log. e was already handled,
+//   // so this handler doesn't get called:
+//   .catch(e => console.log(e))
+//   .then(() => { throw new Error('bar'); })
+//   // When a promise is rejected, success handlers get skipped.
+//   // Nothing logs here because of the 'bar' exception:
+//   .then(g => console.log(`g: ${ g }`))
+//   .catch(h => console.log(h)) // [Error: bar]
+// ;
 
 /*--------Promise.race examples -----------*/
 

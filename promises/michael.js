@@ -2,6 +2,28 @@
 /*-------------------Promises-------------------------*/
 /*--------------------------------------------*/
 
+// The Promise object represents 
+// the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+
+/*--------------------------------------------*/
+
+// What is the difference between these 4 promises?
+//
+
+// doSomething().then(function () {
+//   return doSomethingElse();
+// });
+
+// doSomething().then(function () {
+//   doSomethingElse();
+// });
+
+// doSomething().then(doSomethingElse());
+
+// doSomething().then(doSomethingElse);
+
+/*--------------------------------------------*/
+
 //Exercise:
 // Let’s assume that we have a for loop 
 // that prints 0 to 10 at random intervals (0 to 10 seconds). 
@@ -40,6 +62,8 @@ const funk = function() {
 // }
 
 // myFunk();
+
+/*--------------------------------------------*/
 
 //Exercise:
 //Write two functions that use Promises that you can chain! 
@@ -96,6 +120,16 @@ const funk = function() {
 //     console.log(error);
 // })
 
+/*--------------------------------------------*/
+
+// Exercise: In this code, your function receives a parameter data. 
+// You must modify the code below based on the following rules:
+
+// Your function must always return a promise
+// If data is not a number, return a promise rejected instantly and give the data "error" (in a string)
+// If data is an odd number, return a promise resolved 1 second later and give the data "odd" (in a string)
+// If data is an even number, return a promise rejected 2 seconds later and give the data "even" (in a string)
+
 // function job(data) {
 //     return new Promise(function(resolve, reject) {
 //         if (isNaN(data)) {
@@ -138,7 +172,7 @@ const funk = function() {
 //     console.log(error)
 // })
 
-
+/*--------------------------------------------*/
 
 /* CODE SOLUTION FOR THIS PROBLEM
 
@@ -206,12 +240,7 @@ module.exports = function(id) {
 */
 
 
-
-
-// A promise is commonly defined as a proxy 
-// for a value that will eventually become available.
-// Promises are one way to deal with 
-// asynchronous code, without writing too many callbacks in your code.
+/*--------------------------------------------*/
 
 
 //1. What will be the output of this?
@@ -245,6 +274,9 @@ module.exports = function(id) {
 // .then(function() {
 //     console.log('Success 4');
 // });
+
+
+/*--------------------------------------------*/
 
 //2. What will be the output of this?
 
@@ -283,6 +315,9 @@ module.exports = function(id) {
 // .catch(function(error) {
 //     console.log(error);
 // });
+
+
+/*--------------------------------------------*/
 
 //3. What will be the output of this?
 
@@ -350,6 +385,8 @@ module.exports = function(id) {
 //     console.log('Error:', data.message);
 // });
 
+
+/*--------------------------------------------*/
 /*----- Promise.all examples -------*/
 
 /*
@@ -381,6 +418,8 @@ you want results even if a job is rejected, just use catch
 //     });
 // });
 
+
+/*--------------------------------------------*/
 
 //2. What will be the result here?
 
@@ -419,6 +458,8 @@ you want results even if a job is rejected, just use catch
 // });
 
 
+/*--------------------------------------------*/
+
 //3. What will be the result here?
 
 // let p1 = new Promise(function(resolve, reject) {
@@ -454,6 +495,9 @@ you want results even if a job is rejected, just use catch
 // .catch(function(error) {
 //     console.error('error', error);
 // });
+
+
+/*--------------------------------------------*/
 
 //4. What will be order of execution here?
 // const wait = time => new Promise(
@@ -511,3 +555,14 @@ you want results even if a job is rejected, just use catch
 // Promise.race([delay(500), delay(100)]).then(function(data) {
 //     console.log(data);
 // });
+
+// Promise.race is good for setting a timeout:
+// Promise.race([
+//   new Promise(function (resolve, reject) {
+//     setTimeout(reject, 10000); // timeout after 10 secs
+//   }),
+//   doSomethingThatMayTakeAwhile()
+// ]);
+
+
+/*--------------------------------------------*/

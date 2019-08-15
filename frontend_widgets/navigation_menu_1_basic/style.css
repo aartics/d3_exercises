@@ -1,0 +1,58 @@
+/* Part 1 - Hide submenu, dropbtn hover display submenu */
+
+.dropdown {
+    visibility: hidden;
+    display: none;
+    list-style: none;
+    padding: 0;
+}
+
+.dropBtn:hover > .dropdown {
+    visibility: visible;
+    display: block;
+}
+
+/* Part 2 - Make menu on top*/
+
+.dropBtn {
+    float: left;
+    display: block;
+    padding: 1rem;
+    position: relative;
+    width: 7rem;
+    margin: 0.1rem;
+}
+
+/* Part 3 */
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+.dropdown > li {
+    width: 100%;
+    transition-duration: 0.3s;
+    padding: 1rem 0 0 1rem;
+}
+
+.dropdown > li:hover {
+    background-color: yellowgreen;
+}
+
+.navbar {
+    font-family: monospace;
+    font-size: 16px;
+    position: fixed;
+}
+
+/* Part 4 - Accessibility */
+
+.dropBtn:focus-within > .dropdown {
+    visibility: visible;
+    display: block;    
+}

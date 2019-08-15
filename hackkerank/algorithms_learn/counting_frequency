@@ -1,0 +1,40 @@
+COUNTING FREQUENCY:
+=> Create a map of the array with key = each sock-color to value = occurences by creating an empty object and adding each sock with hasOwnProperty method check and set the map's values as frequency.
+=> Sort the array and use linear search twice
+=> Sort the array and use binary search.
+
+
+var n = 9;
+var arr = [10, 20, 20, 10, 10, 30, 50, 10, 20]
+
+
+function sockMerchant(n, arr) {
+    var pairs = 0;
+    
+    function createSockMap (arr) {
+        var sockMap = {};
+
+        arr.forEach((sockColor) => {
+            if (sockMap.hasOwnProperty(sockColor)) {
+                sockMap[sockColor]++;
+            } else {
+                sockMap[sockColor] = 1;
+            }
+        });
+
+        return sockMap;
+    }
+
+    const sockFrequencyMap = createSockMap(arr);
+    //console.log(sockFrequencyMap)
+
+    const sockFreq = Object.values(sockFrequencyMap)
+
+    sockFreq.forEach(function (x) {
+        pairs += Math.floor(x/2)
+    })
+    return pairs;
+  
+}
+
+console.log(sockMerchant(n, arr))

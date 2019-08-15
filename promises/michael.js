@@ -1,0 +1,437 @@
+/*--------------------------------------------*/
+/*-------------------Promises-------------------------*/
+/*--------------------------------------------*/
+
+//Exercise:
+//Write two functions that use Promises that you can chain! 
+//The first function, makeAllCaps(), will take in an array 
+//of words and capitalize them, and then the second function, 
+//sortWords(), will sort the words in alphabetical order. 
+//If the array contains anything but strings, 
+//it should throw an error.
+
+// const makeAllCaps = (array) => {
+
+//     return new Promise((resolve, reject) => {
+        
+//         if(array instanceof Array) {
+//             let capsArray = array.map(word => {
+//                 if(typeof word === 'string') {
+//                     return word.toUpperCase()
+//                 } else {
+//                     reject('Error, not string')
+//                 }
+//             });
+//             resolve(capsArray);
+//         } else {
+//             reject('not an array')
+//         }
+//     })
+// }
+
+// const sortWords = (array) => {
+//     return new Promise((resolve, reject) => {
+//         if(array) {
+//             resolve(array.sort());
+//         } else {
+//             reject('some error');
+//         }
+//     })
+// }
+
+// let test1 = ['promise', 'function', 'javascript', 'Tom', 'je56', 'aarti'];
+// let test2 = [3, 'juice', 'curry'];
+// let test3 = 'o';
+
+// makeAllCaps(test1)
+
+// .then(function(data) {
+//     return sortWords(data);
+// })
+
+// .then(function(data) {
+//     console.log(data);
+// })
+
+// .catch(function(error) {
+//     console.log(error);
+// })
+
+// function job(data) {
+//     return new Promise(function(resolve, reject) {
+//         if (isNaN(data)) {
+//             reject('error');
+//         } 
+        
+//         if (data % 2 === 1) {
+//             setTimeout(function() {
+//                 resolve('odd')
+//             }, 1000);
+//         } else {
+//             setTimeout(function() {
+//                 reject('even')
+//             }, 2000);   
+//         }
+//     })
+// }
+
+// job('blah')
+// .then(function(data) {
+//     console.log(data)
+// })
+// .catch(function(error) {
+//     console.log(error)
+// })
+
+// job(1)
+// .then(function(data) {
+//     console.log(data)
+// })
+// .catch(function(error) {
+//     console.log(error)
+// })
+
+// job(2)
+// .then(function(data) {
+//     console.log(data)
+// })
+// .catch(function(error) {
+//     console.log(error)
+// })
+
+
+
+/* CODE SOLUTION FOR THIS PROBLEM
+
+https://www.codingame.com/playgrounds/347/javascript-promises-mastering-the-asynchronous/the-last-challenge
+*/
+
+/*
+
+let central = require('./central'),
+    db1 = require('./db1'),
+    db2 = require('./db2'),
+    db3 = require('./db3'),
+    vault = require('./vault'),
+    mark = require('./mark');
+
+module.exports = function(id) {
+    let dbs = {
+        db1: db1,
+        db2: db2,
+        db3: db3
+    };
+    
+    return new Promise(function(resolve, reject) {
+        Promise.all([
+            central(id)
+            .catch(function() {
+                return Promise.reject('Error central');
+            })
+            .then(function(db) {
+                return dbs[db](id)
+                .catch(function() {
+                    return Promise.reject('Error ' + db);
+                });
+            }),
+            
+            vault(id)
+            .catch(function() {
+                return Promise.reject('Error vault');
+            })
+        ])
+        
+        .then(function(data) {
+            mark(id)
+                .catch(function(error) {
+                    return Promise.reject(error);
+                });
+                
+            resolve({
+                id: id,
+                username: data[0].username,
+                country: data[0].country,
+                firstname: data[1].firstname,
+                lastname: data[1].lastname,
+                email: data[1].email
+            });
+                
+        })
+        
+        .catch(function(error) {
+            reject(error);
+        })
+    });
+};
+            
+*/
+
+
+
+
+// A promise is commonly defined as a proxy 
+// for a value that will eventually become available.
+// Promises are one way to deal with 
+// asynchronous code, without writing too many callbacks in your code.
+
+
+//1. What will be the output of this?
+
+// function job() {
+//     return new Promise(function(resolve, reject) {
+//         reject();
+//     });
+// }
+
+// let promise = job();
+
+// promise
+
+// .then(function() {
+//     console.log('Success 1');
+// })
+
+// .then(function() {
+//     console.log('Success 2');
+// })
+
+// .then(function() {
+//     console.log('Success 3');
+// })
+
+// .catch(function() {
+//     console.log('Error 1');
+// })
+
+// .then(function() {
+//     console.log('Success 4');
+// });
+
+//2. What will be the output of this?
+
+// function job(state) {
+//     return new Promise(function(resolve, reject) {
+//         if (state) {
+//             resolve('success');
+//         } else {
+//             reject('error');
+//         }
+//     });
+// }
+
+// let promise = job(true);
+
+// promise
+
+// .then(function(data) {
+//     console.log(data);
+
+//     return job(false);
+// })
+
+// .catch(function(error) {
+//     console.log(error);
+
+//     return 'Error caught';
+// })
+
+// .then(function(data) {
+//     console.log(data);
+
+//     return job(true);
+// })
+
+// .catch(function(error) {
+//     console.log(error);
+// });
+
+//3. What will be the output of this?
+
+// function job(state) {
+//     return new Promise(function(resolve, reject) {
+//         if (state) {
+//             resolve('success');
+//         } else {
+//             reject('error');
+//         }
+//     });
+// }
+
+// let promise = job(true);
+
+// promise
+
+// .then(function(data) {
+//     console.log(data);
+
+//     return job(true);
+// })
+
+// .then(function(data) {
+//     if (data !== 'victory') {
+//         throw 'Defeat';
+//     }
+
+//     return job(true);
+// })
+
+// .then(function(data) {
+//     console.log(data);
+// })
+
+// .catch(function(error) {
+//     console.log(error);
+
+//     return job(false);
+// })
+
+// .then(function(data) {
+//     console.log(data);
+
+//     return job(true);
+// })
+
+// .catch(function(error) {
+//     console.log(error);
+
+//     return 'Error caught';
+// })
+
+// .then(function(data) {
+//     console.log(data);
+
+//     return new Error('test');
+// })
+
+// .then(function(data) {
+//     console.log('Success:', data.message);
+// })
+
+// .catch(function(data) {
+//     console.log('Error:', data.message);
+// });
+
+/*----- Promise.all examples -------*/
+
+/*
+Promise.all returns a promise. fail fast behavior. if anything
+fails, it only returns the data from reject.
+The received data is an array containing 
+the data of each given promise.
+if you want to start multiple asynchronous jobs at once and 
+you want results even if a job is rejected, just use catch
+*/
+
+//1. What will be the result here?
+
+// function job(delay) {
+//     return new Promise(function(resolve) {
+//         setTimeout(function() {
+//             console.log('Resolving', delay);
+//             resolve('done ' + delay);
+//         }, delay);
+//     });
+// }
+
+// var promise = Promise.all([job(1000), job(2000), job(500), job(1500)]);
+
+// promise.then(function(data) {
+//     console.log('All done');
+//     data.forEach(function(text) {
+//         console.log(text);
+//     });
+// });
+
+
+//2. What will be the result here?
+
+// let p1 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 500, 'p1');
+// });
+
+// let p2 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 1000, 'p2');
+// });
+
+// let p3 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 1200, 'p3');
+// });
+
+// let p4 = new Promise(function(resolve, reject) {
+//     setTimeout(reject, 300, 'p4');
+// });
+
+// let p5 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 800, 'p5');
+// });
+
+// let promise = Promise.all([p1, p2, p3, p4, p5]);
+
+// promise
+
+// .then(function(data) {
+//     data.forEach(function(data) {
+//         cconsole.log(data);
+//     });
+// })
+
+// .catch(function(error) {
+//     console.error('error', error);
+// });
+
+
+//3. What will be the result here?
+
+// let p1 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 500, 'p1');
+// });
+
+// let p2 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 1000, 'p2');
+// });
+
+// let p3 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 1200, 'p3');
+// });
+
+// let p4 = new Promise(function(resolve, reject) {
+//     setTimeout(reject, 300, 'p4');
+// });
+
+// let p5 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 800, 'p5');
+// });
+
+// let promise = Promise.all([p1.catch(function() {}), p2.catch(function() {}), p3.catch(function() {}), p4.catch(function() {}), p5.catch(function() {})]);
+
+// promise
+
+// .then(function(data) {
+//     data.forEach(function(data) {
+//         console.log(data);
+//     });
+// })
+
+// .catch(function(error) {
+//     console.error('error', error);
+// });
+
+
+/*--------Promise.race examples -----------*/
+
+// Promise.race takes an array of promises. 
+// The result is a new promise that resolves 
+// or rejects as soon as one of the promises 
+// in the given array resolves or rejects.
+
+// What will be the output here?
+
+// function delay(time) {
+//     return new Promise(function(resolve) {
+//         setTimeout(resolve, time, 'success ' + time);
+//     });
+// }
+
+// Promise.race([delay(500), delay(100)]).then(function(data) {
+//     console.log(data);
+// });

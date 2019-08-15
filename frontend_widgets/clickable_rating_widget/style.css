@@ -1,0 +1,59 @@
+/* Part 1: */
+
+.rating {
+    float: left;
+    width: 300px;
+}
+
+.rating span {
+    float: right;
+    position: relative;
+}
+
+.rating span input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+/* Part 3 */
+/*     opacity: 0; */
+}
+
+/* Part 2 */
+.rating span label {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: black;
+    background: lightgray;
+    font-size: 30px;
+    margin-right: 5px;
+    line-height: 30px;
+    border-radius:50%;
+}
+
+/* Part 4 */
+
+.rating span:hover label,
+.rating span:hover ~ span label,
+.rating span.checked ~ span label,
+.rating span.checked label {
+    background: orange;
+    color: #FFF;
+}
+
+/* .rating span:hover label {
+    background: orange;
+}
+
+.rating span:hover ~ span label {
+    background: orange;
+}
+
+.rating span:checked label {
+    background: orange;
+}
+
+.rating span:checked ~ span label {
+    background: orange;
+} */

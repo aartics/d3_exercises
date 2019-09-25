@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useRef } from 'react';
 
-function App() {
+// Usage
+export default function App() {
+  // State value and setter for our example
+  const [count, setCount] = useState(0);
+  
+  // Get the previous value (was passed into hook on last render)
+  const prevCount = usePrevious(count);
+  
+  // Display both current and previous count value
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Now: {count}, before: {prevCount}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
     </div>
-  );
+   );
 }
 
-export default App;
+// Hook
+function usePrevious(value) {
+  // The ref object is a generic container whose current property is mutable ...
+  // ... and can hold any value, similar to an instance property on a class
+  const ref = useRef();
+  
+  // Store current value in ref
+  useEffect(() => {
+    ref.current = value;
+  }, [value]); // Only re-run if value changes
+  
+  // Return previous value (happens before update in useEffect above)
+  return ref.current;
+}
